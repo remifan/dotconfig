@@ -62,6 +62,16 @@ map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 
+" sideways arguments movement
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
+
+" sideways text objects
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
 " vim plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/vim-easy-align'
@@ -72,4 +82,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'vim-scripts/mru.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'AndrewRadev/sideways.vim'
 call plug#end()
