@@ -105,6 +105,7 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
+<<<<<<< HEAD:.config/nvim/init.vim
 " Ranger
 let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
@@ -115,3 +116,19 @@ let g:neomake_open_list = 2
 " Neomake When writing a buffer (no delay).
 " call neomake#configure#automake('w')
 
+=======
+" vim plugins
+call plug#begin('~/.config/nvim/plugged')
+Plug 'junegunn/vim-easy-align'
+Plug 'kien/ctrlp.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'vim-scripts/mru.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'AndrewRadev/sideways.vim'
+call plug#end()
+>>>>>>> e039518f33b2a3add862945ff63552c7bd2bc38e:nvim/init.vim
