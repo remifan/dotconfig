@@ -106,6 +106,7 @@ omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
 <<<<<<< HEAD:.config/nvim/init.vim
+<<<<<<< HEAD:.config/nvim/init.vim
 " Ranger
 let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
@@ -117,6 +118,8 @@ let g:neomake_open_list = 2
 " call neomake#configure#automake('w')
 
 =======
+=======
+>>>>>>> e039518f33b2a3add862945ff63552c7bd2bc38e:nvim/init.vim
 " vim plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/vim-easy-align'
