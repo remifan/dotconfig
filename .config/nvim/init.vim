@@ -17,10 +17,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'danro/rename.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Turn on syntax highlighting
@@ -60,7 +58,7 @@ set noshiftround
 
 " Lightline color scheme
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'landscape',
       \ }
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -105,8 +103,6 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
-<<<<<<< HEAD:.config/nvim/init.vim
-<<<<<<< HEAD:.config/nvim/init.vim
 " Ranger
 let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
@@ -117,21 +113,3 @@ let g:neomake_open_list = 2
 " Neomake When writing a buffer (no delay).
 " call neomake#configure#automake('w')
 
-=======
-=======
->>>>>>> e039518f33b2a3add862945ff63552c7bd2bc38e:nvim/init.vim
-" vim plugins
-call plug#begin('~/.config/nvim/plugged')
-Plug 'junegunn/vim-easy-align'
-Plug 'kien/ctrlp.vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'vim-scripts/mru.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'AndrewRadev/sideways.vim'
-call plug#end()
->>>>>>> e039518f33b2a3add862945ff63552c7bd2bc38e:nvim/init.vim
