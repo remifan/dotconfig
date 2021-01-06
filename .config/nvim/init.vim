@@ -42,6 +42,9 @@ set encoding=utf-8
 " to make float window work
 set hidden
 
+hi VertSplit cterm=NONE
+set fillchars=vert:¦
+
 " color scheme
 set background=dark
 set t_Co=256
@@ -149,6 +152,6 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 
 " ------------------ fzf -------------------------
 map <c-p> :Files<CR>
-map <c-b> :Buffers<CR>
+map <c-k> :Buffers<CR>
 
 
