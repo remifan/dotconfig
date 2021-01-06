@@ -1,6 +1,7 @@
 set nocompatible
 " vim plugins
 call plug#begin('~/.config/nvim/plugged')
+Plug 'tpope/vim-sensible'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
@@ -8,84 +9,58 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'AndrewRadev/sideways.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-startify'
-" toggle, display and navigate marks
 Plug 'kshenoy/vim-signature'
-Plug 'mcchrish/nnn.vim'
 Plug 'danro/rename.vim'
-" fzf utitlies
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-" A Git wrapper
 Plug 'tpope/vim-fugitive'
-" comment stuff out
 Plug 'tpope/vim-commentary'
-" move lines and selections up and down
 Plug 'matze/vim-move'
-" A solid language pack for Vim
-Plug 'sheerun/vim-polyglot'
-" Bluish color scheme for Vim and Neovim
-Plug 'cocopon/iceberg.vim'
-" Vim/Neovim plugin for editing Jupyter notebook (ipynb) files
-Plug 'goerz/jupytext.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'unblevable/quick-scope'
+if !exists('g:vscode')
+  if !has('win32')
+    Plug 'mcchrish/nnn.vim'
+  endif
+  Plug 'sheerun/vim-polyglot'
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mhinz/vim-startify'
+  Plug 'AndrewRadev/sideways.vim'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'goerz/jupytext.vim'
+  Plug 'brooth/far.vim'
+  Plug 'wesQ3/vim-windowswap'
+endif
 call plug#end()
-
-" For plugins to load correctly
-filetype plugin indent on
-
-" Encoding
-set encoding=utf-8
-
-" to make float window work
-set hidden
-
-hi VertSplit cterm=NONE
-set fillchars=vert:¦
 
 " color scheme
 set background=dark
 set t_Co=256
 colorscheme iceberg
 
-"This unsets the "last search pattern" register by hitting return
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
-
-syntax enable
+" to make float window work
+set hidden
 
 " turn hybrid line numbers on
-:set number relativenumber
-:set nu rnu
-" :highlight LineNr ctermfg=grey
-
-" Show file stats
-set ruler
+set number relativenumber
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
-set formatoptions-=t
-set textwidth=79
-" Status bar
-" set laststatus=2
-" Whitespace
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
-" set expandtab
-" set noshiftround
-" set autoindent
-"highlight clear SignColumn
+"This unsets the "last search pattern" register by hitting return
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
 
 " --------------------    nnn   ------------------------
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+if !has('win32') && !exists('g:vscode')
+  let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
-let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-x>': 'split',
-      \ '<c-v>': 'vsplit' }
+  let g:nnn#action = {
+        \ '<c-t>': 'tab split',
+        \ '<c-x>': 'split',
+        \ '<c-v>': 'vsplit' }
+end
 
 " -------------------- EasyAlign -----------------------
 
@@ -97,7 +72,6 @@ nmap ga <Plug>(EasyAlign)
 
 
 " -------------------- EasyMotion ----------------------
-
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
 
@@ -139,19 +113,43 @@ noremap <silent><expr> zg/ incsearch#go(<SID>config_easyfuzzymotion({'is_stay': 
 
 
 " ----------------- sideways  --------------------
-"  sideways arguments movement
-nnoremap <c-h> :SidewaysLeft<cr>
-nnoremap <c-l> :SidewaysRight<cr>
+if !exists('g:vscode')
+  " sideways arguments movement
+  nnoremap <c-h> :SidewaysLeft<cr>
+  nnoremap <c-l> :SidewaysRight<cr>
 
-" sideways text objects
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
+  " sideways text objects
+  omap aa <Plug>SidewaysArgumentTextobjA
+  xmap aa <Plug>SidewaysArgumentTextobjA
+  omap ia <Plug>SidewaysArgumentTextobjI
+  xmap ia <Plug>SidewaysArgumentTextobjI
+endif
 
 
 " ------------------ fzf -------------------------
-map <c-p> :Files<CR>
-map <c-k> :Buffers<CR>
+if !exists('g:vscode')
+  map <c-p> :Files<CR>
+  map <c-k> :Buffers<CR>
+endif
+
+
+" ------------------ Far -------------------------
+if !exists('g:vscode')
+  set lazyredraw            " improve scrolling performance when navigating through large results
+  set regexpengine=1        " use old regexp engine
+  set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
+
+  " shortcut for far.vim find
+  nnoremap <silent> <Find-Shortcut>  :Farf<cr>
+  vnoremap <silent> <Find-Shortcut>  :Farf<cr>
+
+  " shortcut for far.vim replace
+  nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+  vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+endif
+
+
+" ------------------ quickscope -------------------
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 
