@@ -34,24 +34,6 @@ if !exists('g:vscode')
 endif
 call plug#end()
 
-" color scheme
-set background=dark
-set t_Co=256
-colorscheme iceberg
-
-" to make float window work
-set hidden
-
-" turn hybrid line numbers on
-set number relativenumber
-
-" Blink cursor on error instead of beeping (grr)
-set visualbell
-
-"This unsets the "last search pattern" register by hitting return
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
-
-
 " --------------------    nnn   ------------------------
 if !has('win32') && !exists('g:vscode')
   let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
@@ -152,4 +134,29 @@ endif
 " ------------------ quickscope -------------------
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+augroup END
+
+
+" ------------------ general ----------------------
+
+" color scheme
+set background=dark
+set t_Co=256
+colorscheme iceberg
+
+" to make float window work
+set hidden
+
+" turn hybrid line numbers on
+set number relativenumber
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
