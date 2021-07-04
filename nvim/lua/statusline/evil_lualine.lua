@@ -5,16 +5,16 @@ local lualine = require 'lualine'
 
 -- Color table for highlights
 local colors = {
-  bg = '#202328',
+  bg = '#17202A',
   fg = '#bbc2cf',
   yellow = '#ECBE7B',
   cyan = '#008080',
   darkblue = '#081633',
-  green = '#98be65',
+  green = '#46C7C7',
   orange = '#FF8800',
   violet = '#a9a1e1',
   magenta = '#c678dd',
-  blue = '#51afef',
+  blue = '#2B3856',
   red = '#ec5f67'
 }
 
@@ -108,7 +108,7 @@ ins_left {
     vim.api.nvim_command(
         'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. " guibg=" ..
             colors.bg)
-    return ''
+    return ''
   end,
   color = "LualineMode",
   left_padding = 0
@@ -174,7 +174,7 @@ ins_left {
     return msg
   end,
   icon = ' LSP:',
-  color = {fg = '#ffffff', gui = 'bold'}
+  color = {fg = '#D5D8DC', gui = 'bold'}
 }
 
 -- Add components to right sections

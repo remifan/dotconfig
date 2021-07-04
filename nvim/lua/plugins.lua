@@ -9,6 +9,7 @@ return require('packer').startup(function()
     use {'kabouzeid/nvim-lspinstall'}
     use { 'hrsh7th/nvim-compe' }
     use { 'onsails/lspkind-nvim' }
+    use { 'ray-x/lsp_signature.nvim' }
     use { 'karb94/neoscroll.nvim' }
     use {
         'nvim-telescope/telescope.nvim',
@@ -23,7 +24,7 @@ return require('packer').startup(function()
     use {'kshenoy/vim-signature'}
     use {'matze/vim-move'}
     use {'junegunn/vim-easy-align'}
-    use {'wellle/targets.vim'}
+    use {'AndrewRadev/sideways.vim'}
     use {'unblevable/quick-scope'}
     use {'andymass/vim-matchup'}
     use {'mhinz/vim-startify'}
@@ -36,8 +37,10 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    use {'rafamadriz/neon'}
     use {'marko-cerovac/material.nvim'}
     use {'cocopon/iceberg.vim'}
+    use {'folke/lsp-colors.nvim'}
     use {'norcalli/nvim-colorizer.lua'}
     use {
         'hoob3rt/lualine.nvim',
@@ -67,4 +70,6 @@ return require('packer').startup(function()
         }
       end
     }
+    use {"tversteeg/registers.nvim"}
+    use {"npxbr/glow.nvim"}
 end)

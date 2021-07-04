@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -71,138 +71,166 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  ["glow.nvim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/glow.nvim"
   },
   ["iceberg.vim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/iceberg.vim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/iceberg.vim"
+  },
+  ["incsearch-fuzzy.vim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/incsearch-fuzzy.vim"
+  },
+  ["incsearch.vim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/incsearch.vim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["material.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/material.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/material.nvim"
   },
   neoformat = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/neoformat"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neoformat"
+  },
+  neon = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neon"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-comment"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lightbulb"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["quick-scope"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/quick-scope"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/quick-scope"
+  },
+  ["registers.nvim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/registers.nvim"
   },
   ["rename.vim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/rename.vim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/rename.vim"
   },
   ["targets.vim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/targets.vim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/targets.vim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["trouble.nvim"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0" },
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["vim-easy-align"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-easy-align"
   },
   ["vim-matchup"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-matchup"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
   ["vim-move"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-move"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-move"
   },
   ["vim-polyglot"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
   ["vim-signature"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-signature"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-signature"
   },
   ["vim-sneak"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-sneak"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-sneak"
   },
   ["vim-startify"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["zen-mode.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0" },
     loaded = true,
-    path = "/Users/remi/.local/share/nvim/site/pack/packer/start/zen-mode.nvim"
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/zen-mode.nvim"
   }
 }
 

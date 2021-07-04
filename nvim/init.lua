@@ -1,5 +1,5 @@
 -- Map leader to space
-vim.g.mapleader = ' '
+-- vim.g.mapleader = ' '
 local fn = vim.fn
 local execute = vim.api.nvim_command
 

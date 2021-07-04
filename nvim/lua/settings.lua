@@ -21,7 +21,7 @@ utils.opt('w', 'number', true)
 utils.opt('w', 'relativenumber', true)
 
 -- Highlight on yank
-vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
+cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
 
 cmd [[
 set nocompatible
