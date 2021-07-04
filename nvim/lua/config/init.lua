@@ -1,5 +1,5 @@
 require('config.lspkind')
-require('config.tree-sitter')
+-- require('config.tree-sitter')
 require('config.colorscheme')
 require('gitsigns').setup()
 require('statusline.evil_lualine')
