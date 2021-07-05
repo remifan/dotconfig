@@ -121,10 +121,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/neon"
   },
-  ["neoscroll.nvim"] = {
-    loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -182,6 +178,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/rename.vim"
   },
+  ["sideways.vim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/sideways.vim"
+  },
   ["targets.vim"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/targets.vim"
@@ -198,6 +198,10 @@ _G.packer_plugins = {
   ["vim-easy-align"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+  },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-matchup"] = {
     loaded = true,
@@ -227,6 +231,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
+  },
   ["zen-mode.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0" },
     loaded = true,
@@ -235,14 +243,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

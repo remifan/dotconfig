@@ -10,7 +10,6 @@ return require('packer').startup(function()
     use { 'hrsh7th/nvim-compe' }
     use { 'onsails/lspkind-nvim' }
     use { 'ray-x/lsp_signature.nvim' }
-    use { 'karb94/neoscroll.nvim' }
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
@@ -19,12 +18,15 @@ return require('packer').startup(function()
         'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'}
     }
+    use {'voldikss/vim-floaterm'}
     use {'kosayoda/nvim-lightbulb'}
     use {'justinmk/vim-sneak'}
     use {'kshenoy/vim-signature'}
     use {'matze/vim-move'}
+    use {'mg979/vim-visual-multi'}
     use {'junegunn/vim-easy-align'}
     use {'AndrewRadev/sideways.vim'}
+    use {'wellle/targets.vim'}
     use {'unblevable/quick-scope'}
     use {'andymass/vim-matchup'}
     use {'mhinz/vim-startify'}
@@ -50,25 +52,25 @@ return require('packer').startup(function()
     use { 'tpope/vim-surround' }
     use { 'sbdchd/neoformat' }
     use {
-      "folke/zen-mode.nvim",
-      config = function()
-        require("zen-mode").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
+        "folke/zen-mode.nvim",
+        config = function()
+            require("zen-mode").setup {
+              -- your configuration comes here
+              -- or leave it empty to use the default settings
+              -- refer to the configuration section below
+            }
+        end
     }
     use {
-      "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = function()
-        require("trouble").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+              -- your configuration comes here
+              -- or leave it empty to use the default settings
+              -- refer to the configuration section below
+            }
+        end
     }
     use {"tversteeg/registers.nvim"}
     use {"npxbr/glow.nvim"}
