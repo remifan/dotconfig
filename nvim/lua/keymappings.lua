@@ -34,18 +34,6 @@ utils.map("n", "<F12>", "<cmd>FloatermToggle<CR>", {silent = true, noremap = tru
 utils.map("t", "<F12>", "<C-\\><C-n><cmd>FloatermToggle<CR>", {silent = true, noremap = true})
 
 
-vim.cmd [[
-" Close window if the job exits normally, otherwise stay it with messages like [Process exited 101]
-let g:floaterm_autoclose = 1
-
-" Set floaterm window background to gray once the cursor moves out from it
-hi FloatermNC guibg=gray
-
-" colors
-hi FloatermBorder guibg=None guifg=gray
-]]
-
-
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
   {silent = true, noremap = true}
 )

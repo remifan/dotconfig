@@ -18,11 +18,12 @@ require('settings')
 -- Install plugins
 require('plugins')
 
--- Key mappings
-require('keymappings')
+-- Another option is to groups configuration in one folder
+require('config')
 
 -- Setup Lua language server using submodule
 require('lsp')
 
--- Another option is to groups configuration in one folder
-require('config')
+-- Key mappings
+require('keymappings')
+
