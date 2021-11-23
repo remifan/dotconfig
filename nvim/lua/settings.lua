@@ -38,4 +38,3 @@ set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 ]]
 
-

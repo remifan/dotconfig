@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  fzf = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/fzf"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
@@ -88,10 +92,6 @@ _G.packer_plugins = {
   ["incsearch.vim"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/incsearch.vim"
-  },
-  ["indent-blankline.nvim"] = {
-    loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
@@ -137,13 +137,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
-  },
-  ["nvim-lspinstall"] = {
-    loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -195,6 +195,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
+  undotree = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/undotree"
+  },
   ["vim-easy-align"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-easy-align"
@@ -202,6 +206,10 @@ _G.packer_plugins = {
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-illuminate"
   },
   ["vim-matchup"] = {
     loaded = true,
@@ -235,6 +243,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
   },
+  ["vista.vim"] = {
+    loaded = true,
+    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vista.vim"
+  },
   ["zen-mode.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0" },
     loaded = true,
@@ -243,14 +255,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: zen-mode.nvim
-time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
-time([[Config for zen-mode.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: zen-mode.nvim
+time([[Config for zen-mode.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+time([[Config for zen-mode.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

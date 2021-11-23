@@ -33,31 +33,26 @@ local on_attach = function(client, bufnr)
         border = "single"
       }
     })
+
+    require 'illuminate'.on_attach(client)
 end
 
 
--- related: https://ka.codes/posts/nvim-lspinstall#nvim-lspinstall
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  -- lsp specific setting, lua example
-  -- if server == "lua" then
-  --   config.settings = lua_settings
-  --   config.root_dir = function(fname)
-  --     if fname:match("lush_theme") ~= nil then return nil end
-  --     local util = require "lspconfig/util"
-  --     return util.find_git_ancestor(fname) or util.path.dirname(fname)
-  --   end
-  -- end
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{ on_attach = on_attach }
-  end
-end
+local lsp_installer = require("nvim-lsp-installer")
 
-setup_servers()
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
 
--- automatically setup servers again after `:LspInstall <server>`
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- makes sure the new server is setup in lspconfig
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)
+
+

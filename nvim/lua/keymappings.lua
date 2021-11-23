@@ -33,6 +33,7 @@ utils.map("t", "<F9>",  "<C-\\><C-n><cmd>FloatermNext<CR>", {silent = true, nore
 utils.map("n", "<F12>", "<cmd>FloatermToggle<CR>", {silent = true, noremap = true})
 utils.map("t", "<F12>", "<C-\\><C-n><cmd>FloatermToggle<CR>", {silent = true, noremap = true})
 
+utils.map('n', '<leader>u', '<cmd>UndotreeToggle<CR>', {noremap = true})
 
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
   {silent = true, noremap = true}
