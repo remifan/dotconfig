@@ -7,7 +7,6 @@ return require('packer').startup(function()
     use { 'williamboman/nvim-lsp-installer' } -- seamlessly manage LSP servers locally with :LspInstall
     use { 'hrsh7th/nvim-compe' } -- Auto completion Lua plugin for nvim
     use { 'onsails/lspkind-nvim' } --  pictograms for neovim lsp completion items
-    use { 'liuchengxu/vista.vim' } -- Viewer & Finder for LSP symbols and tags
     use { 'ray-x/lsp_signature.nvim' }  -- LSP signature hint as you type
     use {
         'nvim-telescope/telescope.nvim',
@@ -18,7 +17,6 @@ return require('packer').startup(function()
         requires = {'nvim-lua/plenary.nvim'}
     } -- Git integration for buffers
     use {'voldikss/vim-floaterm'} -- Terminal manager for (neo)vim
-    use {'kosayoda/nvim-lightbulb'} -- VSCode 💡 for neovim's built-in LSP.
     use {'justinmk/vim-sneak'} -- easy motion by s{char}{char}
     use {'kshenoy/vim-signature'} -- toggle, display and navigate marks
     use {'matze/vim-move'} -- move lines and selections up and down
@@ -39,9 +37,6 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }  -- Nvim Treesitter
-    use {'rafamadriz/neon'} -- color scheme
-    use {'marko-cerovac/material.nvim'} -- color scheme
-    use {'cocopon/iceberg.vim'} -- color scheme
     use {'folke/lsp-colors.nvim'} -- creates missing LSP diagnostics highlight groups for color old schemes
     use {'norcalli/nvim-colorizer.lua'} -- Neovim colorizer
     use {
@@ -75,4 +70,8 @@ return require('packer').startup(function()
     } -- A pretty diagnostics, references, telescope results
     use {"tversteeg/registers.nvim"} -- preview the contents of the registers
     use {"npxbr/glow.nvim"} -- A markdown preview directly in your neovim
+    -- color schemes --
+    use {'rafamadriz/neon'}
+    use {'marko-cerovac/material.nvim'}
+    use {'cocopon/iceberg.vim'}
 end)
