@@ -25,5 +25,10 @@ telescope.setup {
       i = { ["<c-t>"] = trouble.open_with_trouble },
       n = { ["<c-t>"] = trouble.open_with_trouble },
     },
+    layout_strategy='vertical',    
+    layout_config = {              
+      vertical = { width = 0.9 },  
+      horizontal = { width = 0.9 },
+    },                           
   },
 }

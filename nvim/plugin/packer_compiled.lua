@@ -7,7 +7,7 @@ end
 
 vim.api.nvim_command('packadd packer.nvim')
 
-local no_errors = pcall(function()
+local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/remi/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "C:\\Users\\remif\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\share\\lua\\5.1\\?.lua;C:\\Users\\remif\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\share\\lua\\5.1\\?\\init.lua;C:\\Users\\remif\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\luarocks\\rocks-5.1\\?.lua;C:\\Users\\remif\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\luarocks\\rocks-5.1\\?\\init.lua"
+local install_cpath_pattern = "C:\\Users\\remif\\AppData\\Local\\Temp\\nvim\\packer_hererocks\\2.1.0-beta3\\lib\\lua\\5.1\\?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -71,186 +71,226 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   fzf = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/fzf"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\fzf",
+    url = "https://github.com/junegunn/fzf"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["glow.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/glow.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\glow.nvim",
+    url = "https://github.com/npxbr/glow.nvim"
   },
   ["iceberg.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/iceberg.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\iceberg.vim",
+    url = "https://github.com/cocopon/iceberg.vim"
   },
   ["incsearch-fuzzy.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/incsearch-fuzzy.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\incsearch-fuzzy.vim",
+    url = "https://github.com/haya14busa/incsearch-fuzzy.vim"
   },
   ["incsearch.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/incsearch.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\incsearch.vim",
+    url = "https://github.com/haya14busa/incsearch.vim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lsp-colors.nvim",
+    url = "https://github.com/folke/lsp-colors.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["material.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/material.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\material.nvim",
+    url = "https://github.com/marko-cerovac/material.nvim"
   },
   neoformat = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neoformat"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\neoformat",
+    url = "https://github.com/sbdchd/neoformat"
   },
   neon = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/neon"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\neon",
+    url = "https://github.com/rafamadriz/neon"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-comment"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-compe"
-  },
-  ["nvim-lightbulb"] = {
-    loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-compe",
+    url = "https://github.com/hrsh7th/nvim-compe"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["quick-scope"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/quick-scope"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\quick-scope",
+    url = "https://github.com/unblevable/quick-scope"
   },
   ["registers.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/registers.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\registers.nvim",
+    url = "https://github.com/tversteeg/registers.nvim"
   },
   ["rename.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/rename.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rename.vim",
+    url = "https://github.com/danro/rename.vim"
   },
   ["sideways.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/sideways.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\sideways.vim",
+    url = "https://github.com/AndrewRadev/sideways.vim"
   },
   ["targets.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/targets.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\targets.vim",
+    url = "https://github.com/wellle/targets.vim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["trouble.nvim"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0" },
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   },
   undotree = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/undotree"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\undotree",
+    url = "https://github.com/mbbill/undotree"
   },
   ["vim-easy-align"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-easy-align",
+    url = "https://github.com/junegunn/vim-easy-align"
   },
   ["vim-floaterm"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-floaterm",
+    url = "https://github.com/voldikss/vim-floaterm"
   },
   ["vim-illuminate"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-illuminate"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vim-matchup"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-matchup"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-matchup",
+    url = "https://github.com/andymass/vim-matchup"
   },
   ["vim-move"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-move"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-move",
+    url = "https://github.com/matze/vim-move"
   },
   ["vim-polyglot"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-polyglot",
+    url = "https://github.com/sheerun/vim-polyglot"
   },
   ["vim-signature"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-signature"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-signature",
+    url = "https://github.com/kshenoy/vim-signature"
   },
   ["vim-sneak"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-sneak"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-sneak",
+    url = "https://github.com/justinmk/vim-sneak"
   },
   ["vim-startify"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-startify",
+    url = "https://github.com/mhinz/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-visual-multi"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-visual-multi",
+    url = "https://github.com/mg979/vim-visual-multi"
   },
   ["vista.vim"] = {
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/vista.vim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vista.vim",
+    url = "https://github.com/liuchengxu/vista.vim"
   },
   ["zen-mode.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0" },
     loaded = true,
-    path = "/home/remi/.local/share/nvim/site/pack/packer/start/zen-mode.nvim"
+    path = "C:\\Users\\remif\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\zen-mode.nvim",
+    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 
@@ -268,5 +308,5 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
-  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
