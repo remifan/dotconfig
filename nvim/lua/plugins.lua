@@ -40,7 +40,7 @@ return require('packer').startup(function()
     use {'folke/lsp-colors.nvim'} -- creates missing LSP diagnostics highlight groups for color old schemes
     use {'norcalli/nvim-colorizer.lua'} -- Neovim colorizer
     use {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     } -- A blazing fast and easy to configure neovim statusline
     use { 'danro/rename.vim' } -- Rename the current file in the vim buffer + retain relative path
