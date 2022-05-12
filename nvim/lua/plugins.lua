@@ -5,9 +5,14 @@ return require('packer').startup(function()
     use { 'wbthomason/packer.nvim', opt = true } -- Packer can manage itself as an optional plugin
     use { 'neovim/nvim-lspconfig' } -- LSP and completion
     use { 'williamboman/nvim-lsp-installer' } -- seamlessly manage LSP servers locally with :LspInstall
-    use { 'hrsh7th/nvim-compe' } -- Auto completion Lua plugin for nvim
-    use { 'onsails/lspkind-nvim' } --  pictograms for neovim lsp completion items
     use { 'ray-x/lsp_signature.nvim' }  -- LSP signature hint as you type
+    use { 
+        'j-hui/fidget.nvim',
+        config = function()
+            require("fidget").setup{}
+        end
+    }
+    use { 'hrsh7th/nvim-compe' } -- Auto completion Lua plugin for nvim
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
@@ -16,6 +21,7 @@ return require('packer').startup(function()
         'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'}
     } -- Git integration for buffers
+    use { 'simrat39/symbols-outline.nvim' }
     use {'voldikss/vim-floaterm'} -- Terminal manager for (neo)vim
     use {'justinmk/vim-sneak'} -- easy motion by s{char}{char}
     use {'kshenoy/vim-signature'} -- toggle, display and navigate marks
@@ -57,17 +63,6 @@ return require('packer').startup(function()
             }
         end
     } -- Distraction-free coding for Neovim
-    use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup {
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-            }
-        end
-    } -- A pretty diagnostics, references, telescope results
     use {"tversteeg/registers.nvim"} -- preview the contents of the registers
     use {"npxbr/glow.nvim"} -- A markdown preview directly in your neovim
     -- color schemes --
