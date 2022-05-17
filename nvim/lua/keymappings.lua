@@ -15,6 +15,11 @@ map z? <Plug>(incsearch-fuzzyspell-?)
 map zg/ <Plug>(incsearch-fuzzyspell-stay)
 ]]
 
+vim.cmd [[
+let g:move_key_modifier = 'C'
+let g:move_key_modifier_visualmode = 'C'
+]]
+
 utils.map('n', '<c-h>', '<cmd>SidewaysLeft<cr>', {noremap = true})
 utils.map('n', '<c-l>', '<cmd>SidewaysRight<cr>', {noremap = true})
 
