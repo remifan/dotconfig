@@ -6,7 +6,7 @@ return require('packer').startup(function()
     use { 'neovim/nvim-lspconfig' } -- LSP and completion
     use { 'williamboman/nvim-lsp-installer' } -- seamlessly manage LSP servers locally with :LspInstall
     use { 'ray-x/lsp_signature.nvim' }  -- LSP signature hint as you type
-    use { 
+    use {  -- Standalone UI for nvim-lsp progress
         'j-hui/fidget.nvim',
         config = function()
             require("fidget").setup{}

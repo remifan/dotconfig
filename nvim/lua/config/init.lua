@@ -9,6 +9,7 @@ require('config.quick-scope')
 require('config.floaterm')
 require('config.illuminate')
 require('config.symbols-outline')
+require('config.gitsigns')
 
 vim.cmd [[
 let g:vista_default_executive = 'nvim_lsp'
