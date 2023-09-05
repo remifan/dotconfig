@@ -1,0 +1,8 @@
+# neovim
+lua/
+profile.json
+
+# cli
+result/
+target/
+packages.json
