@@ -23,7 +23,7 @@ local generator = function(--[[ win_id ]])
   return {
     extensions.mode,
     sections.split,
-    builtin.file,
+    builtin.file_relative,
     sections.collapse_builtin {
       " ",
       builtin.modified_flag,
