@@ -266,7 +266,7 @@ require("lazy").setup({
   {
     "ziontee113/SelectEase",
     config = function()
-        require('seconf')
+        require("SelectEase")
     end
   },
   {
