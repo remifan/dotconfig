@@ -42,6 +42,13 @@ require("lazy").setup({
           enable = true,              -- mandatory, false will disable the whole extension
           -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
         },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            node_incremental = "v",
+            node_decremental = "V",
+          },
+        },
       }
     end,
   },
@@ -76,7 +83,7 @@ require("lazy").setup({
   },
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
+    -- tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require("telescope").load_extension("notify")
@@ -108,7 +115,9 @@ require("lazy").setup({
   },
   {"folke/which-key.nvim"},
   {
-    "kylechui/nvim-surround", version = "*", event = "VeryLazy",
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
     config = function()
       require("nvim-surround").setup()
     end,
@@ -175,7 +184,7 @@ require("lazy").setup({
     end,
     dependencies={theme}
   },
-  {"RRethy/vim-illuminate"},
+  -- {"RRethy/vim-illuminate"},
   {
     "terrortylor/nvim-comment",
     config = function()
@@ -207,26 +216,26 @@ require("lazy").setup({
       vim.cmd('colorscheme oxocarbon')
     end
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    init = function()
-      -- color tweaks to match the theme
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#3B3B3B gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineContextStart guisp=#808080 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineContextChar guifg=#808080 gui=nocombine]]
-    end,
-    config = function()
-      require("indent_blankline").setup {
-          space_char_blankline = " ",
-          show_current_context = true,
-          show_current_context_start = true,
-          char_highlight_list = {
-              "IndentBlanklineIndent1",
-          },
-      }
-    end,
-    dependencies={theme}
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   init = function()
+  --     -- color tweaks to match the theme
+  --     vim.cmd [[highlight IndentBlanklineIndent1 guifg=#3B3B3B gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineContextStart guisp=#808080 gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineContextChar guifg=#808080 gui=nocombine]]
+  --   end,
+  --   config = function()
+  --     require("ibl").setup {
+  --         space_char_blankline = " ",
+  --         show_current_context = true,
+  --         show_current_context_start = true,
+  --         char_highlight_list = {
+  --             "IndentBlanklineIndent1",
+  --         },
+  --     }
+  --   end,
+  --   dependencies={theme}
+  -- },
   {"nmac427/guess-indent.nvim", config = function() require('guess-indent').setup {} end},
   {"nvim-tree/nvim-web-devicons"},
   {
@@ -255,11 +264,18 @@ require("lazy").setup({
     end,
   },
   {
+    "ziontee113/SelectEase",
+    config = function()
+        require('seconf')
+    end
+  },
+  {
     "tjdevries/express_line.nvim",
     config = function()
       require('elconf')
     end,
     dependencies = { "nvim-lua/plenary.nvim", "nvim-lua/lsp-status.nvim"}
-  }
+  },
+  { "rainbowhxch/beacon.nvim" }
 })
 
