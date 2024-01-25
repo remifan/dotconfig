@@ -13,22 +13,6 @@ vim.o.smartindent = true
 vim.keymap.set('n', '<CR>', '<cmd>noh<CR>', {silent = true}) -- Clear highlights
 theme = "nyoom-engineering/oxocarbon.nvim"
 
-<<<<<<< HEAD
--- bootstrap Lazy plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-=======
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.0
 end
@@ -47,7 +31,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
->>>>>>> 46eb204 (add OSC52 support)
 -- fire lazy plugins
 require("lazy").setup({
   {
@@ -229,7 +212,8 @@ require("lazy").setup({
     "nyoom-engineering/oxocarbon.nvim",
     lazy=false,
     init=function ()
-      vim.wo.relativenumber = true
+      -- vim.wo.relativenumber = true
+      vim.wo.number = true
       vim.o.background = "dark"
       vim.o.termguicolors = true
     end,
@@ -237,6 +221,7 @@ require("lazy").setup({
       vim.cmd('colorscheme oxocarbon')
     end
   },
+  { "sitiom/nvim-numbertoggle" },
   {
     'ojroques/nvim-osc52',
     config=function ()
