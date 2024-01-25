@@ -74,29 +74,16 @@ require("lazy").setup({
     "numToStr/FTerm.nvim",
     config = function()
       require'FTerm'.setup({
-        border = 'none',
+        -- border = 'none',
         dimensions  = {
             height = 0.9,
             width = 0.9,
         }
       })
-      vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')
-      vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+      vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>')
+      vim.keymap.set('t', '<leader>t', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
     end,
     dependencies={theme},
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    -- tag = '0.1.1',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require("telescope").load_extension("notify")
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    end
   },
   {
     "fedepujol/move.nvim",
@@ -209,7 +196,7 @@ require("lazy").setup({
   },
   {"kshenoy/vim-signature"},
   {
-    "nyoom-engineering/oxocarbon.nvim",
+    'rockerBOO/boo-colorscheme-nvim',
     lazy=false,
     init=function ()
       -- vim.wo.relativenumber = true
@@ -218,7 +205,11 @@ require("lazy").setup({
       vim.o.termguicolors = true
     end,
     config=function ()
-      vim.cmd('colorscheme oxocarbon')
+      vim.cmd('colorscheme boo')
+      require("boo-colorscheme").use({
+        italic = true,
+        theme = "boo"
+      })
     end
   },
   { "sitiom/nvim-numbertoggle" },
@@ -275,6 +266,12 @@ require("lazy").setup({
         },
         use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
       }
+      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
     end
   },
   {
@@ -296,6 +293,19 @@ require("lazy").setup({
     end,
     dependencies = { "nvim-lua/plenary.nvim", "nvim-lua/lsp-status.nvim"}
   },
-  { "rainbowhxch/beacon.nvim" }
+  { "rainbowhxch/beacon.nvim" },
+  {
+    'nvim-telescope/telescope.nvim',
+    -- tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("telescope").load_extension("notify")
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    end
+  },
 })
 
