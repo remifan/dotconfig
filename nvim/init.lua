@@ -13,6 +13,7 @@ vim.o.smartindent = true
 vim.keymap.set('n', '<CR>', '<cmd>noh<CR>', {silent = true}) -- Clear highlights
 theme = "nyoom-engineering/oxocarbon.nvim"
 
+<<<<<<< HEAD
 -- bootstrap Lazy plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -27,6 +28,26 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+=======
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.0
+end
+
+-- bootstrap Lazy plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+>>>>>>> 46eb204 (add OSC52 support)
 -- fire lazy plugins
 require("lazy").setup({
   {
@@ -216,6 +237,20 @@ require("lazy").setup({
       vim.cmd('colorscheme oxocarbon')
     end
   },
+  {
+    'ojroques/nvim-osc52',
+    config=function ()
+      vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+      vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+      vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
+      require('osc52').setup {
+        max_length = 0,           -- Maximum length of selection (0 for no limit)
+        silent = false,           -- Disable message on successful copy
+        trim = false,             -- Trim surrounding whitespaces before copy
+        tmux_passthrough = true, -- Use tmux passthrough (requires tmux: set -g allow-passthrough on)
+      }
+    end,
+  },
   -- {
   --   "lukas-reineke/indent-blankline.nvim",
   --   init = function()
@@ -266,7 +301,7 @@ require("lazy").setup({
   {
     "ziontee113/SelectEase",
     config = function()
-        require("SelectEase")
+        require("seconf")
     end
   },
   {
