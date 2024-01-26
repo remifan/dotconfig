@@ -60,7 +60,7 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     config = function ()
       require('lsp')
-    end
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -175,12 +175,13 @@ require("lazy").setup({
     end,
     dependencies={theme}
   },
-  -- {"RRethy/vim-illuminate"},
+  {"RRethy/vim-illuminate"},
   {
-    "terrortylor/nvim-comment",
-    config = function()
-      require('nvim_comment').setup()
-    end
+    'numToStr/Comment.nvim',
+    opts = {
+        -- add any options here
+    },
+    lazy = false,
   },
   {"danro/rename.vim"}, -- maybe helpful without lsp
   {"mg979/vim-visual-multi"},
