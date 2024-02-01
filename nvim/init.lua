@@ -228,26 +228,15 @@ require("lazy").setup({
       }
     end,
   },
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   init = function()
-  --     -- color tweaks to match the theme
-  --     vim.cmd [[highlight IndentBlanklineIndent1 guifg=#3B3B3B gui=nocombine]]
-  --     vim.cmd [[highlight IndentBlanklineContextStart guisp=#808080 gui=nocombine]]
-  --     vim.cmd [[highlight IndentBlanklineContextChar guifg=#808080 gui=nocombine]]
-  --   end,
-  --   config = function()
-  --     require("ibl").setup {
-  --         space_char_blankline = " ",
-  --         show_current_context = true,
-  --         show_current_context_start = true,
-  --         char_highlight_list = {
-  --             "IndentBlanklineIndent1",
-  --         },
-  --     }
-  --   end,
-  --   dependencies={theme}
-  -- },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup {
+        scope = { enabled = false },
+      }
+    end,
+    dependencies={theme}
+  },
   {"nmac427/guess-indent.nvim", config = function() require('guess-indent').setup {} end},
   {"nvim-tree/nvim-web-devicons"},
   {
