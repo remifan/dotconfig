@@ -285,6 +285,14 @@ require("lazy").setup({
   },
   { "rainbowhxch/beacon.nvim" },
   {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
     'nvim-telescope/telescope.nvim',
     -- tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
