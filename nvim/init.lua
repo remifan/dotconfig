@@ -41,11 +41,6 @@ require("lazy").setup({
         indent = { enable = true },
       }
       require'nvim-treesitter.configs'.setup {
-        -- interop with matchup
-        matchup = {
-          enable = true,              -- mandatory, false will disable the whole extension
-          -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-        },
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -270,14 +265,14 @@ require("lazy").setup({
       require('gitconf')
     end,
   },
+  -- {
+  --   "ziontee113/SelectEase",
+  --   config = function()
+  --       require("seconf")
+  --   end
+  -- },
   {
-    "ziontee113/SelectEase",
-    config = function()
-        require("seconf")
-    end
-  },
-  {
-    "tjdevries/express_line.nvim",
+    "remifan/express_line.nvim",
     config = function()
       require('elconf')
     end,
@@ -304,39 +299,6 @@ require("lazy").setup({
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
-  },
-  {
-    'glacambre/firenvim',
-    -- Lazy load firenvim
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-    lazy = not vim.g.started_by_firenvim,
-    build = function()
-        vim.fn["firenvim#install"](0)
-    end,
-    init = function ()
-      vim.api.nvim_create_autocmd({'UIEnter'}, {
-        callback = function(event)
-          local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
-            if client ~= nil and client.name == "Firenvim" then
-              vim.o.laststatus = 0
-            end
-        end
-      })
-    end,
-    config = function()
-      vim.g.firenvim_config = {
-        globalSettings = { alt = "all" },
-        localSettings = {
-            [".*"] = {
-                cmdline  = "firenvim",
-                content  = "text",
-                priority = 0,
-                selector = "textarea",
-                takeover = "never"
-            }
-        }
-      }
-    end,
   },
 })
 
