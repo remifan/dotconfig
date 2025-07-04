@@ -1,21 +1,13 @@
 -- Setup language servers.
+
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.ts_ls.setup{}
-lspconfig.lua_ls.setup{}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+
 lspconfig.verible.setup {
-    root_dir = function() return vim.uv.cwd() end
+  cmd = { "verible-verilog-ls", "--lsp_enable_hover" },
+  filetypes = { "verilog", "systemverilog" },
+  root_dir = require("lspconfig.util").root_pattern(".git", "."),
 }
 
-
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)

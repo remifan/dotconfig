@@ -58,11 +58,21 @@ require("lazy").setup({
     end,
   },
   {
-    "williamboman/mason.nvim",
-    build=":MasonUpdate",
-    lazy=false,
-    config=function()
-      require("mason").setup()
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+    config = function()
+      require("mason-lspconfig").setup {
+        ensure_installed = {"lua_ls", "rust_analyzer", "verible", "basedpyright"},
+        automatic_enable = {
+          exclude = {
+              "verible",
+          }
+        }
+      }
     end
   },
   {
@@ -346,6 +356,7 @@ require("lazy").setup({
         require("treemonkey").select({ ignore_injections = false })
       end)
     end
-  }
+  },
+  {"liangxianzhe/floating-input.nvim"}
 })
 
