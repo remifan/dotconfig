@@ -99,7 +99,6 @@ require("lazy").setup({
       vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
     end
   },
-  {"folke/which-key.nvim"},
   {
     "kylechui/nvim-surround",
     version = "*",
@@ -265,12 +264,6 @@ require("lazy").setup({
       require('gitconf')
     end,
   },
-  -- {
-  --   "ziontee113/SelectEase",
-  --   config = function()
-  --       require("seconf")
-  --   end
-  -- },
   {
     "remifan/express_line.nvim",
     config = function()
@@ -280,12 +273,15 @@ require("lazy").setup({
   },
   { "rainbowhxch/beacon.nvim" },
   {
-    "stevearc/oil.nvim",
+    "echasnovski/mini.files",
+    version = false, -- use latest
     config = function()
-      require("oil").setup()
-      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+      require("mini.files").setup()
+      -- Optional: open mini.files with current file's directory
+      vim.keymap.set("n", "<leader>e", function()
+        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+      end, { desc = "Open file explorer (mini.files)" })
     end,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -300,5 +296,71 @@ require("lazy").setup({
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
   },
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" }
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    opts = {
+      filetypes = {
+        codecompanion = {
+          prompt_for_file_name = false,
+          template = "[Image]($FILE_PATH)",
+          use_absolute_path = true,
+        },
+      },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async", -- required dependency
+      "nvim-treesitter/nvim-treesitter", -- for treesitter-based folding
+    },
+    config = function()
+      -- Set up fold options
+      vim.o.foldcolumn = "1"       -- show fold column
+      vim.o.foldlevel = 99         -- ensure folds are open
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+      vim.keymap.set('n', 'zp', function()
+          require('ufo').peekFoldedLinesUnderCursor()
+        end, { desc = "Preview folded lines" })
+
+      require("ufo").setup({
+        provider_selector = function(_, _, _)
+          return { "treesitter", "indent" }
+        end,
+      })
+    end,
+  },
+  {
+    "atusy/treemonkey.nvim",
+    init = function()
+      vim.keymap.set({"x", "o"}, "m", function()
+        require("treemonkey").select({ ignore_injections = false })
+      end)
+    end
+  }
 })
 
