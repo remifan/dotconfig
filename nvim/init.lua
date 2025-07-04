@@ -343,10 +343,14 @@ require("lazy").setup({
 
       vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
       vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-      vim.keymap.set('n', 'zp', function()
-          require('ufo').peekFoldedLinesUnderCursor()
-        end, { desc = "Preview folded lines" })
-
+      vim.keymap.set('n', 'K', function()
+          local winid = require('ufo').peekFoldedLinesUnderCursor()
+          if not winid then
+              -- choose one of coc.nvim and nvim lsp
+              vim.fn.CocActionAsync('definitionHover') -- coc.nvim
+              vim.lsp.buf.hover()
+          end
+      end)
       require("ufo").setup({
         provider_selector = function(_, _, _)
           return { "treesitter", "indent" }
