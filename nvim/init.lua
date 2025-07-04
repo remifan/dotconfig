@@ -329,33 +329,14 @@ require("lazy").setup({
     end,
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async", -- required dependency
-      "nvim-treesitter/nvim-treesitter", -- for treesitter-based folding
-    },
-    config = function()
-      -- Set up fold options
-      vim.o.foldcolumn = "1"       -- show fold column
-      vim.o.foldlevel = 99         -- ensure folds are open
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
+    "chrisgrieser/nvim-origami",
+    event = "VeryLazy",
+    opts = {}, -- needed even when using default config
 
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-      vim.keymap.set('n', 'K', function()
-          local winid = require('ufo').peekFoldedLinesUnderCursor()
-          if not winid then
-              -- choose one of coc.nvim and nvim lsp
-              vim.fn.CocActionAsync('definitionHover') -- coc.nvim
-              vim.lsp.buf.hover()
-          end
-      end)
-      require("ufo").setup({
-        provider_selector = function(_, _, _)
-          return { "treesitter", "indent" }
-        end,
-      })
+    -- recommended: disable vim's auto-folding
+    init = function()
+      vim.opt.foldlevel = 99
+      vim.opt.foldlevelstart = 99
     end,
   },
   {
