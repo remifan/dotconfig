@@ -66,7 +66,7 @@ require("lazy").setup({
     },
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = {"lua_ls", "rust_analyzer", "verible", "basedpyright"},
+        ensure_installed = {"lua_ls", "rust_analyzer", "verible", "pyright"},
         automatic_enable = {
           exclude = {
               "verible",
