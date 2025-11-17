@@ -189,7 +189,12 @@ require("lazy").setup({
   },
   {"danro/rename.vim"}, -- maybe helpful without lsp
   {"mg979/vim-visual-multi"},
-  {"rcarriga/nvim-notify"},
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
   {
     "tversteeg/registers.nvim",
      name = "registers",
@@ -293,6 +298,7 @@ require("lazy").setup({
       end, { desc = "Open file explorer (mini.files)" })
     end,
   },
+  {"rcarriga/nvim-notify"},
   {
     'nvim-telescope/telescope.nvim',
     -- tag = '0.1.1',
@@ -307,39 +313,14 @@ require("lazy").setup({
     end
   },
   {
-    "olimorris/codecompanion.nvim",
-    opts = {},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion" }
   },
   {
     "HakonHarnes/img-clip.nvim",
-    opts = {
-      filetypes = {
-        codecompanion = {
-          prompt_for_file_name = false,
-          template = "[Image]($FILE_PATH)",
-          use_absolute_path = true,
-        },
-      },
-    },
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
-  },
-  {
-    "chrisgrieser/nvim-origami",
+    "chrisgrieser/nvim-origami", -- folding
     event = "VeryLazy",
     opts = {}, -- needed even when using default config
 
@@ -357,6 +338,16 @@ require("lazy").setup({
       end)
     end
   },
-  {"liangxianzhe/floating-input.nvim"}
+  {"liangxianzhe/floating-input.nvim"},
+  {
+    'arnamak/stay-centered.nvim',
+    lazy = false,
+    config = function()
+      require('stay-centered').setup({
+          enabled = false
+      })
+      vim.keymap.set({ 'n', 'v' }, '<leader>st', require('stay-centered').toggle, { desc = 'Toggle stay-centered.nvim' })
+    end
+  }
 })
 
