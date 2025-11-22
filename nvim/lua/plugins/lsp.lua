@@ -43,14 +43,48 @@ return {
       })
     end
   },
-
-  -- ============================================================================
-  -- LSP UI Enhancements
-  -- ============================================================================
-
-  -- Show LSP progress notifications (bottom right)
   {
-    "j-hui/fidget.nvim",
-    opts = {},
+    "remifan/lf.nvim",
+    ft = "lf",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",  -- Optional: enhanced library browser
+    },
+    config = function()
+      require("lf").setup({
+        enable_lsp = true,
+
+        -- Syntax highlighting
+        syntax = {
+          auto_detect_target = true,
+          target_language = nil,  -- or "C", "Cpp", "Python", "Rust", "TypeScript"
+          indent = { size = 2, use_tabs = false },
+        },
+
+        -- LSP configuration
+        lsp = {
+          -- Auto-detected if nil, or specify path:
+          jar_path = vim.fn.expand(""),
+          java_cmd = "java",
+          java_args = { "-Xmx2G" },
+          auto_start = true,
+        },
+
+        -- Build settings
+        build = {
+          auto_validate = true,
+          show_progress = true,
+          open_quickfix = true,
+        },
+
+        -- Keymaps
+        keymaps = {
+          build = "<leader>lb",
+          run = "<leader>lr",
+          diagram = "<leader>ld",
+          library = "<leader>ll",
+          show_ast = "<leader>la",
+        },
+      })
+    end,
   },
 }
