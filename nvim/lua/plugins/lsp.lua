@@ -57,13 +57,16 @@ return {
         syntax = {
           auto_detect_target = true,
           target_language = nil,  -- or "C", "Cpp", "Python", "Rust", "TypeScript"
-          indent = { size = 2, use_tabs = false },
+          indent = { size = 4, use_tabs = false },
         },
 
         -- LSP configuration
         lsp = {
-          -- Auto-detected if nil, or specify path:
-          jar_path = vim.fn.expand(""),
+          -- Auto-detected if nil. Priority order:
+          -- 1. Environment variable: LF_LSP_JAR
+          -- 2. Explicit jar_path config below
+          -- 3. Common locations (~/lingua-franca/lsp/build/libs/, etc.)
+          jar_path = nil,  -- or vim.fn.expand("~/lingua-franca/lsp/build/libs/lsp-*-all.jar")
           java_cmd = "java",
           java_args = { "-Xmx2G" },
           auto_start = true,
