@@ -19,8 +19,9 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            node_incremental = "v",
-            node_decremental = "V",
+            init_selection = "<CR>",
+            node_incremental = "<CR>",
+            node_decremental = "<BS>",
           },
         },
       })
@@ -227,5 +228,15 @@ return {
         auto_enable = false, -- Enable the plugin by default
       }
     end,
+  },
+  -- filetype plugin for LaTeX files
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end
   },
 }

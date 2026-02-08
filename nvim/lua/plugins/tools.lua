@@ -79,4 +79,16 @@ return {
 
   -- Floating input box for various plugins
   { "liangxianzhe/floating-input.nvim" },
+
+  -- ============================================================================
+  -- Typst
+  -- ============================================================================
+
+  -- Live preview for Typst documents
+  {
+    "chomosuke/typst-preview.nvim",
+    ft = "typst",
+    version = "1.*",
+    opts = {},
+  },
 }

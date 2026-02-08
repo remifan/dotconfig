@@ -33,6 +33,7 @@ return {
           "rust_analyzer",    -- Rust
           "verible",          -- Verilog/SystemVerilog
           "pyright",          -- Python
+          "tinymist",         -- Typst
         },
         -- Auto-enable all servers except those in exclude list
         automatic_enable = {
@@ -43,15 +44,13 @@ return {
       })
     end
   },
--- lazy.nvim
   {
-    "remifan/lf.nvim",
+    dir = "/home/remi/Workspace/lf.nvim/lf.nvim",
     ft = "lf",
+    cmd = { "LFTSInstall", "LFTSUninstall", "LFTSStatus" },  -- Load on treesitter commands
     dependencies = {
       "nvim-telescope/telescope.nvim",  -- Optional: enhanced library browser
     },
-    -- Note: Diagram dependencies build automatically on first use
-    -- No need to specify build command!
     config = function()
       require("lf").setup({
         enable_lsp = true,
@@ -60,7 +59,11 @@ return {
         syntax = {
           auto_detect_target = true,
           target_language = nil,  -- or "C", "Cpp", "Python", "Rust", "TypeScript"
-          indent = { size = 2, use_tabs = false },
+          indent = { size = 4, use_tabs = false },
+        },
+
+        diagram = {
+          no_browser = true -- Don't auto-open browser, just show URL
         },
 
         -- LSP configuration
@@ -89,13 +92,6 @@ return {
           diagram = "<leader>ld",
           library = "<leader>ll",
           show_ast = "<leader>la",
-        },
-
-        -- Diagram settings
-        diagram = {
-          no_browser = true,   -- Default: show URL without auto-opening browser (good for SSH)
-                               -- Set to false to auto-open browser locally
-          auto_update = true,  -- Auto-refresh diagram when switching between LF files
         },
       })
     end,
