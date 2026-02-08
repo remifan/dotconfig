@@ -47,7 +47,7 @@ return {
   {
     "remifan/lf.nvim",
     ft = "lf",
-    cmd = { "LFTSInstall", "LFTSUninstall", "LFTSStatus" },  -- Load on treesitter commands
+    cmd = { "LFLspInstall", "LFLspStatus", "LFTSInstall", "LFTSUninstall", "LFTSStatus" },
     dependencies = {
       "nvim-telescope/telescope.nvim",  -- Optional: enhanced library browser
     },
