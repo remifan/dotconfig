@@ -45,7 +45,7 @@ return {
     end
   },
   {
-    dir = "/home/remi/Workspace/lf.nvim/lf.nvim",
+    "remifan/lf.nvim",
     ft = "lf",
     cmd = { "LFTSInstall", "LFTSUninstall", "LFTSStatus" },  -- Load on treesitter commands
     dependencies = {
