@@ -14,17 +14,50 @@ return {
       require('nvim-treesitter').setup({
         indent = { enable = true },
       })
-      require('nvim-treesitter.configs').setup({
-        -- Incremental selection with v/V keys
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<CR>",
-            node_incremental = "<CR>",
-            node_decremental = "<BS>",
-          },
-        },
-      })
+
+      -- Incremental treesitter node selection (replaces old nvim-treesitter module)
+      local function get_node_range(node)
+        local sr, sc, er, ec = node:range()
+        return sr, sc, er, ec
+      end
+
+      vim.keymap.set('n', '<CR>', function()
+        local node = vim.treesitter.get_node()
+        if not node then return end
+        local sr, sc, er, ec = get_node_range(node)
+        vim.api.nvim_buf_set_mark(0, '<', sr + 1, sc, {})
+        vim.api.nvim_buf_set_mark(0, '>', er + 1, ec - 1, {})
+        vim.cmd('normal! gv')
+      end, { desc = 'Init treesitter selection' })
+
+      vim.keymap.set('v', '<CR>', function()
+        local node = vim.treesitter.get_node()
+        if not node then return end
+        local parent = node:parent()
+        if not parent then return end
+        local sr, sc, er, ec = get_node_range(parent)
+        vim.api.nvim_buf_set_mark(0, '<', sr + 1, sc, {})
+        vim.api.nvim_buf_set_mark(0, '>', er + 1, ec - 1, {})
+        vim.cmd('normal! gv')
+      end, { desc = 'Expand treesitter selection' })
+
+      vim.keymap.set('v', '<BS>', function()
+        local node = vim.treesitter.get_node()
+        if not node then return end
+        -- Find the smallest child that still covers the cursor
+        for child in node:iter_children() do
+          if child:named() then
+            local sr, sc, er, ec = get_node_range(child)
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            if sr <= cursor[1] - 1 and er >= cursor[1] - 1 then
+              vim.api.nvim_buf_set_mark(0, '<', sr + 1, sc, {})
+              vim.api.nvim_buf_set_mark(0, '>', er + 1, ec - 1, {})
+              vim.cmd('normal! gv')
+              return
+            end
+          end
+        end
+      end, { desc = 'Shrink treesitter selection' })
     end,
   },
 
@@ -55,7 +88,7 @@ return {
 
   -- Lightning-fast navigation with leap (s/S keys)
   {
-    "ggandor/leap.nvim",
+    url = "https://codeberg.org/andyg/leap.nvim",
     config = function()
       require('leap').add_default_mappings()
     end

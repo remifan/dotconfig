@@ -3,17 +3,16 @@
 -- ============================================================================
 -- This file sets up LSP keymaps, handlers, and server configurations
 
-local lspconfig = require('lspconfig')
-
 -- ============================================================================
 -- Verible LSP Setup (SystemVerilog/Verilog)
 -- ============================================================================
--- Custom configuration for Verible language server
-lspconfig.verible.setup({
+-- Custom configuration for Verible language server (nvim 0.11+ API)
+vim.lsp.config('verible', {
   cmd = { "verible-verilog-ls", "--lsp_enable_hover" },
   filetypes = { "verilog", "systemverilog" },
-  root_dir = require("lspconfig.util").root_pattern(".git", "."),
+  root_markers = { ".git", "." },
 })
+vim.lsp.enable('verible')
 
 -- ============================================================================
 -- Global LSP Diagnostic Keymaps
