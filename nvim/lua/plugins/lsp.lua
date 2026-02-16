@@ -26,22 +26,40 @@ return {
       "neovim/nvim-lspconfig",
     },
     config = function()
+      -- Mason lacks pre-built binaries for Windows ARM64, so skip
+      -- ensure_installed on that platform. Install servers manually
+      -- (e.g. npm install -g pyright, cargo install rust-analyzer) and
+      -- mason-lspconfig's automatic_enable will pick them up from PATH.
+      local is_win_arm64 = vim.fn.has('win32') == 1
+        and vim.env.PROCESSOR_ARCHITECTURE == 'ARM64'
+
+      local servers = {
+        "lua_ls",           -- Lua
+        "rust_analyzer",    -- Rust
+        "verible",          -- Verilog/SystemVerilog
+        "pyright",          -- Python
+        "tinymist",         -- Typst
+      }
+
       require("mason-lspconfig").setup({
-        -- Automatically install these language servers
-        ensure_installed = {
-          "lua_ls",           -- Lua
-          "rust_analyzer",    -- Rust
-          "verible",          -- Verilog/SystemVerilog
-          "pyright",          -- Python
-          "tinymist",         -- Typst
-        },
-        -- Auto-enable all servers except those in exclude list
+        ensure_installed = not is_win_arm64 and servers or {},
         automatic_enable = {
           exclude = {
             "verible",  -- Verible needs custom setup
           }
         }
       })
+
+      -- On Windows ARM64, servers are installed manually (not via Mason),
+      -- so automatic_enable won't see them. Explicitly enable them —
+      -- lspconfig will only start a server if its executable is on PATH.
+      if is_win_arm64 then
+        for _, server in ipairs(servers) do
+          if server ~= "verible" then
+            vim.lsp.enable(server)
+          end
+        end
+      end
     end
   },
   {

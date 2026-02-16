@@ -12,7 +12,9 @@ vim.lsp.config('verible', {
   filetypes = { "verilog", "systemverilog" },
   root_markers = { ".git", "." },
 })
-vim.lsp.enable('verible')
+if vim.fn.executable('verible-verilog-ls') == 1 then
+  vim.lsp.enable('verible')
+end
 
 -- ============================================================================
 -- Global LSP Diagnostic Keymaps
