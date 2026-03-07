@@ -26,19 +26,39 @@ return {
   },
 
   -- ============================================================================
-  -- File Explorer
+  -- Terminal File Manager - yazi.nvim
   -- ============================================================================
   {
-    "echasnovski/mini.files",
-    version = false,  -- Use latest version
-    config = function()
-      require("mini.files").setup()
-
-      -- Open file explorer at current file's directory
-      vim.keymap.set("n", "<leader>e", function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-      end, { desc = "Open file explorer (mini.files)" })
-    end,
+    "mikavilpas/yazi.nvim",
+    version = "*", -- use the latest stable version
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    keys = {
+      {
+        "<leader>e",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open file manager (yazi)",
+      },
+      {
+        "<leader>yc",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open file manager (yazi, cwd)",
+      },
+      {
+        "<leader>yr",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume last yazi session",
+      },
+    },
+    ---@type YaziConfig | {}
+    opts = {
+      open_for_directories = true,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
   },
 
   -- ============================================================================

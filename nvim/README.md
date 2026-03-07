@@ -37,7 +37,7 @@ Auto-installed via Mason:
 `gd` definition | `gr` references | `K` hover | `<space>ca` code action | `<space>rn` rename | `<space>f` format
 
 **Navigation**
-`<leader>ff` find files | `<leader>fg` live grep | `<leader>e` file explorer | `<leader>t` terminal
+`<leader>ff` find files | `<leader>fg` live grep | `<leader>e` yazi file manager | `<leader>yc` yazi (cwd) | `<leader>E` mini.files explorer | `<leader>t` terminal
 
 **Editing**
 `s`/`S` leap | `gcc` comment | `Alt+j/k` move lines | `Ctrl+h/l` swap args | `ga` align
