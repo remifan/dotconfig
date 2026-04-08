@@ -94,11 +94,17 @@ local function apply_servers(selected)
 
       local jar = find_lf_jar()
 
-      -- Auto-install jar if missing
+      -- Auto-install jar if missing (suppress verbose output to avoid "Press ENTER")
       if not jar then
         vim.defer_fn(function()
           if vim.fn.exists(':LFLspInstall') == 2 then
-            vim.cmd('silent LFLspInstall')
+            local orig_notify = vim.notify
+            vim.notify = function(msg, ...)
+              if type(msg) == 'string' and msg:find('%[lf%.nvim%]') then return end
+              return orig_notify(msg, ...)
+            end
+            vim.cmd('LFLspInstall')
+            vim.defer_fn(function() vim.notify = orig_notify end, 60000)
           end
         end, 500)
       end
@@ -242,14 +248,9 @@ else
       end
 
       if mason_pending == 0 then
-        vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
-          .. '\nRestarting...')
         vim.defer_fn(function() vim.cmd('restart') end, 2000)
         return
       end
-
-      vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
-        .. '\nInstalling ' .. mason_pending .. ' server(s), will restart when done...')
 
       local completed = 0
       local function on_done()
