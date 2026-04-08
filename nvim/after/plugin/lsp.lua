@@ -84,6 +84,21 @@ local function apply_servers(selected)
   if enable_lf then
     local lf_ok, lf = pcall(require, "lf")
     if lf_ok then
+      -- Auto-install LSP jar if not present
+      vim.defer_fn(function()
+        if vim.fn.exists(':LFLspInstall') == 2 then
+          local lf_mod = require("lf")
+          if lf_mod.lsp and type(lf_mod.lsp.get_jar_path) == 'function' then
+            if not lf_mod.lsp.get_jar_path() then
+              vim.cmd('LFLspInstall')
+            end
+          else
+            -- Fallback: try installing, command is a no-op if jar exists
+            vim.cmd('LFLspInstall')
+          end
+        end
+      end, 500)
+
       lf.setup({
         enable_lsp = true,
         syntax = {
