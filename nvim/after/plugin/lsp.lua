@@ -98,7 +98,7 @@ local function apply_servers(selected)
       if not jar then
         vim.defer_fn(function()
           if vim.fn.exists(':LFLspInstall') == 2 then
-            vim.cmd('LFLspInstall')
+            vim.cmd('silent LFLspInstall')
           end
         end, 500)
       end
