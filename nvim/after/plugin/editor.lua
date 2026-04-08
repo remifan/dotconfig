@@ -13,11 +13,22 @@ if ts_ok then
 
   -- Prompt to install missing treesitter parsers on FileType
   local prompted = {}
+  local ignore_ft = {
+    '', 'TelescopePrompt', 'TelescopeResults', 'mason', 'lazy', 'notify',
+    'checkhealth', 'help', 'man', 'qf', 'netrw', 'fugitive', 'git',
+    'gitcommit', 'gitrebase', 'trouble', 'Trouble', 'undotree',
+  }
+  local ignore_set = {}
+  for _, ft in ipairs(ignore_ft) do ignore_set[ft] = true end
+
   vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('ts_auto_prompt', { clear = true }),
     callback = function(ev)
       local ft = ev.match
-      if prompted[ft] or ft == '' then return end
+      if prompted[ft] or ignore_set[ft] then return end
+      -- Skip plugin/special buffers
+      local bt = vim.bo[ev.buf].buftype
+      if bt ~= '' then return end
 
       local lang = vim.treesitter.language.get_lang(ft) or ft
       if pcall(vim.treesitter.language.inspect, lang) then return end
@@ -25,15 +36,18 @@ if ts_ok then
       prompted[ft] = true
 
       vim.schedule(function()
-        -- lf.nvim uses its own install command
-        if ft == 'lf' then
-          local choice = vim.fn.confirm("Install treesitter parser for '" .. ft .. "' (via lf.nvim)?", "&Yes\n&No", 1)
-          if choice == 1 then vim.cmd('LFTSInstall') end
-          return
-        end
+        local label = ft == 'lf'
+          and ("Install treesitter parser for '" .. ft .. "' (via lf.nvim)?")
+          or ("Install treesitter parser for '" .. lang .. "'?")
 
-        local choice = vim.fn.confirm("Install treesitter parser for '" .. lang .. "'?", "&Yes\n&No", 1)
-        if choice == 1 then vim.cmd('TSInstall ' .. lang) end
+        vim.ui.select({ 'Yes', 'No' }, { prompt = label }, function(choice)
+          if choice ~= 'Yes' then return end
+          if ft == 'lf' then
+            vim.cmd('LFTSInstall')
+          else
+            vim.cmd('TSInstall ' .. lang)
+          end
+        end)
       end)
     end,
   })

@@ -200,26 +200,10 @@ else
       save_selection(chosen)
       apply_servers(chosen)
       vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
-        .. '\nRestarting after Mason finishes installing...')
-      -- Wait for Mason installs to finish, then auto-restart
-      local timer = vim.uv.new_timer()
-      timer:start(2000, 1000, vim.schedule_wrap(function()
-        local registry = require('mason-registry')
-        -- Check if any packages are still installing
-        local installing = false
-        for _, pkg_name in ipairs(chosen) do
-          local ok, pkg = pcall(registry.get_package, pkg_name)
-          if ok and pkg:is_installing() then
-            installing = true
-            break
-          end
-        end
-        if not installing then
-          timer:stop()
-          timer:close()
-          vim.cmd('restart')
-        end
-      end))
+        .. '\nRestarting in a moment...')
+      -- Brief delay so the user sees the message, then restart.
+      -- Mason's ensure_installed continues installing after restart.
+      vim.defer_fn(function() vim.cmd('restart') end, 2000)
     end)
   end)
 end
