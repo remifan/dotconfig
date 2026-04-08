@@ -100,7 +100,7 @@ local function apply_servers(selected)
           if vim.fn.exists(':LFLspInstall') == 2 then
             local orig_notify = vim.notify
             vim.notify = function(msg, ...)
-              if type(msg) == 'string' and msg:find('%[lf%.nvim%]') then return end
+              if type(msg) == 'string' and msg:find('export LF_LSP_JAR') then return end
               return orig_notify(msg, ...)
             end
             vim.cmd('LFLspInstall')
