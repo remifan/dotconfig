@@ -40,7 +40,7 @@ local function save_selection(list)
   end
 end
 
-local function apply_servers(selected, first_run)
+local function apply_servers(selected)
   -- Split by provider
   local mason_servers = {}
   local enable_lf = false
@@ -84,9 +84,18 @@ local function apply_servers(selected, first_run)
   if enable_lf then
     local lf_ok, lf = pcall(require, "lf")
     if lf_ok then
-      -- On first run: skip LSP (jar not downloaded yet), install jar instead.
-      -- After auto-restart, enable_lsp = true works because jar exists.
-      if first_run then
+      -- Auto-detect LSP jar from LFLspInstall location
+      local function find_lf_jar()
+        local data_dir = vim.fn.stdpath('data') .. '/lf-lsp'
+        local jars = vim.fn.glob(data_dir .. '/lsp-*-all.jar', false, true)
+        if #jars > 0 then return jars[#jars] end  -- latest version
+        return nil
+      end
+
+      local jar = find_lf_jar()
+
+      -- Auto-install jar if missing
+      if not jar then
         vim.defer_fn(function()
           if vim.fn.exists(':LFLspInstall') == 2 then
             vim.cmd('LFLspInstall')
@@ -95,7 +104,7 @@ local function apply_servers(selected, first_run)
       end
 
       lf.setup({
-        enable_lsp = not first_run,
+        enable_lsp = jar ~= nil,
         syntax = {
           auto_detect_target = true,
           target_language = nil,
@@ -103,7 +112,7 @@ local function apply_servers(selected, first_run)
         },
         diagram = { no_browser = true },
         lsp = {
-          jar_path = nil,
+          jar_path = jar,
           java_cmd = "java",
           java_args = { "-Xmx2G" },
           auto_start = true,
@@ -208,7 +217,7 @@ else
   vim.schedule(function()
     show_server_picker(function(chosen)
       save_selection(chosen)
-      apply_servers(chosen, true)
+      apply_servers(chosen)
       vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
         .. '\nRestarting in a moment...')
       -- Brief delay so the user sees the message, then restart.
