@@ -40,7 +40,7 @@ local function save_selection(list)
   end
 end
 
-local function apply_servers(selected)
+local function apply_servers(selected, first_run)
   -- Split by provider
   local mason_servers = {}
   local enable_lf = false
@@ -84,23 +84,18 @@ local function apply_servers(selected)
   if enable_lf then
     local lf_ok, lf = pcall(require, "lf")
     if lf_ok then
-      -- Auto-install LSP jar if not present
-      vim.defer_fn(function()
-        if vim.fn.exists(':LFLspInstall') == 2 then
-          local lf_mod = require("lf")
-          if lf_mod.lsp and type(lf_mod.lsp.get_jar_path) == 'function' then
-            if not lf_mod.lsp.get_jar_path() then
-              vim.cmd('LFLspInstall')
-            end
-          else
-            -- Fallback: try installing, command is a no-op if jar exists
+      -- On first run: skip LSP (jar not downloaded yet), install jar instead.
+      -- After auto-restart, enable_lsp = true works because jar exists.
+      if first_run then
+        vim.defer_fn(function()
+          if vim.fn.exists(':LFLspInstall') == 2 then
             vim.cmd('LFLspInstall')
           end
-        end
-      end, 500)
+        end, 500)
+      end
 
       lf.setup({
-        enable_lsp = true,
+        enable_lsp = not first_run,
         syntax = {
           auto_detect_target = true,
           target_language = nil,
@@ -213,7 +208,7 @@ else
   vim.schedule(function()
     show_server_picker(function(chosen)
       save_selection(chosen)
-      apply_servers(chosen)
+      apply_servers(chosen, true)
       vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
         .. '\nRestarting in a moment...')
       -- Brief delay so the user sees the message, then restart.
