@@ -218,11 +218,55 @@ else
     show_server_picker(function(chosen)
       save_selection(chosen)
       apply_servers(chosen)
+
+      -- Wait for all Mason installs to finish, then auto-restart
+      local registry_ok, registry = pcall(require, 'mason-registry')
+      if not registry_ok then
+        vim.defer_fn(function() vim.cmd('restart') end, 2000)
+        return
+      end
+
+      -- Count mason servers that actually need installing
+      local mason_pending = 0
+      local map_ok, mlc = pcall(require, 'mason-lspconfig')
+      local pkg_map = (map_ok and mlc.get_mappings and mlc.get_mappings().lspconfig_to_package) or {}
+
+      for _, s in ipairs(all_servers) do
+        if s.via == "mason" and vim.tbl_contains(chosen, s.name) then
+          local pkg_name = pkg_map[s.name] or s.name
+          local ok, pkg = pcall(registry.get_package, pkg_name)
+          if ok and not pkg:is_installed() then
+            mason_pending = mason_pending + 1
+          end
+        end
+      end
+
+      if mason_pending == 0 then
+        vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
+          .. '\nRestarting...')
+        vim.defer_fn(function() vim.cmd('restart') end, 2000)
+        return
+      end
+
       vim.notify('LSP servers configured: ' .. table.concat(chosen, ', ')
-        .. '\nRestarting in a moment...')
-      -- Brief delay so the user sees the message, then restart.
-      -- Mason's ensure_installed continues installing after restart.
-      vim.defer_fn(function() vim.cmd('restart') end, 2000)
+        .. '\nInstalling ' .. mason_pending .. ' server(s), will restart when done...')
+
+      local completed = 0
+      local function on_done()
+        completed = completed + 1
+        if completed >= mason_pending then
+          vim.defer_fn(function() vim.cmd('restart') end, 1000)
+        end
+      end
+      registry:on('package:install:success', vim.schedule_wrap(on_done))
+      registry:on('package:install:failed', vim.schedule_wrap(on_done))
+
+      -- Safety timeout: restart after 5 minutes regardless
+      vim.defer_fn(function()
+        if completed < mason_pending then
+          vim.cmd('restart')
+        end
+      end, 300000)
     end)
   end)
 end
