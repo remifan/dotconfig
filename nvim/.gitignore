@@ -1,6 +1,8 @@
 # neovim
 # lua/
 profile.json
+lsp-servers.json
+nvim-pack-lock.json
 
 # cli
 result/

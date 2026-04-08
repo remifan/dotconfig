@@ -36,6 +36,11 @@ if vim.g.neovide then
 end
 
 -- ============================================================================
+-- Completion Settings (Neovim 0.12 built-in LSP completion)
+-- ============================================================================
+vim.opt.completeopt = "menu,menuone,noselect,popup"
+
+-- ============================================================================
 -- Folding Settings
 -- ============================================================================
 -- Start with all folds open (used with nvim-origami plugin)

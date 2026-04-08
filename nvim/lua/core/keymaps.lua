@@ -4,7 +4,7 @@
 -- This file contains general keymaps that are not plugin-specific.
 -- Plugin-specific keymaps are defined in their respective plugin configs.
 
--- NOTE: Leader key configuration is handled by lazy.nvim before plugins load
+-- NOTE: Leader key must be set in init.lua before plugins load.
 -- To change leader key, uncomment and modify these lines in init.lua:
 -- vim.g.mapleader = " "
 -- vim.g.maplocalleader = " "
@@ -19,6 +19,10 @@ vim.keymap.set('n', '<CR>', '<cmd>noh<CR>', {
   desc = 'Clear search highlights'
 })
 
--- Additional general keymaps can be added here as needed
--- Example:
--- vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
+-- ============================================================================
+-- Built-in Undotree (Neovim 0.12)
+-- ============================================================================
+vim.keymap.set('n', '<leader>u', '<cmd>Undotree<CR>', {
+  silent = true,
+  desc = 'Toggle undotree'
+})
