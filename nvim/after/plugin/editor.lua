@@ -26,6 +26,8 @@ if ts_ok then
     callback = function(ev)
       local ft = ev.match
       if prompted[ft] or ignore_set[ft] then return end
+      -- lf.nvim handles its own treesitter install in its ftplugin; don't double-prompt.
+      if ft == 'lf' then return end
       -- Skip plugin/special buffers
       local bt = vim.bo[ev.buf].buftype
       if bt ~= '' then return end
@@ -36,17 +38,11 @@ if ts_ok then
       prompted[ft] = true
 
       vim.schedule(function()
-        local label = ft == 'lf'
-          and ("Install treesitter parser for '" .. ft .. "' (via lf.nvim)?")
-          or ("Install treesitter parser for '" .. lang .. "'?")
-
-        vim.ui.select({ 'Yes', 'No' }, { prompt = label }, function(choice)
+        vim.ui.select({ 'Yes', 'No' }, {
+          prompt = "Install treesitter parser for '" .. lang .. "'?",
+        }, function(choice)
           if choice ~= 'Yes' then return end
-          if ft == 'lf' then
-            vim.cmd('LFTSInstall')
-          else
-            vim.cmd('TSInstall ' .. lang)
-          end
+          vim.cmd('TSInstall ' .. lang)
         end)
       end)
     end,
