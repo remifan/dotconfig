@@ -13,19 +13,11 @@ if ts_ok then
 
   -- Prompt to install missing treesitter parsers on FileType
   local prompted = {}
-  local ignore_ft = {
-    '', 'TelescopePrompt', 'TelescopeResults', 'mason', 'lazy', 'notify',
-    'checkhealth', 'help', 'man', 'qf', 'netrw', 'fugitive', 'git',
-    'gitcommit', 'gitrebase', 'trouble', 'Trouble', 'undotree',
-  }
-  local ignore_set = {}
-  for _, ft in ipairs(ignore_ft) do ignore_set[ft] = true end
-
   vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('ts_auto_prompt', { clear = true }),
     callback = function(ev)
       local ft = ev.match
-      if prompted[ft] or ignore_set[ft] then return end
+      if prompted[ft] then return end
       -- lf.nvim handles its own treesitter install in its ftplugin; don't double-prompt.
       if ft == 'lf' then return end
       -- Skip plugin/special buffers
@@ -34,6 +26,10 @@ if ts_ok then
 
       local lang = vim.treesitter.language.get_lang(ft) or ft
       if pcall(vim.treesitter.language.inspect, lang) then return end
+
+      -- Only prompt if nvim-treesitter has a parser available for this language
+      local ok, parsers = pcall(require, 'nvim-treesitter.parsers')
+      if not ok or not parsers.get_parser_configs()[lang] then return end
 
       prompted[ft] = true
 
