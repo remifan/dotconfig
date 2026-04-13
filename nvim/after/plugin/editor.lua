@@ -29,7 +29,7 @@ if ts_ok then
 
       -- Only prompt if nvim-treesitter has a parser available for this language
       local ok, parsers = pcall(require, 'nvim-treesitter.parsers')
-      if not ok or not parsers.get_parser_configs()[lang] then return end
+      if not ok or not parsers[lang] then return end
 
       prompted[ft] = true
 
