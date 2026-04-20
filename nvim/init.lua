@@ -137,6 +137,7 @@ local pack_ok, pack_err = pcall(vim.pack.add, {
   'https://github.com/numToStr/FTerm.nvim',
 
   -- Tools
+  'https://github.com/stevearc/conform.nvim',
   'https://github.com/tversteeg/registers.nvim',
   'https://github.com/ojroques/nvim-osc52',
   'https://github.com/kshenoy/vim-signature',
