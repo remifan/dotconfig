@@ -24,7 +24,7 @@ vim.o.smartindent = true      -- Smart autoindenting when starting a new line
 -- ============================================================================
 vim.wo.number = true          -- Show line numbers
 -- vim.wo.relativenumber = true  -- Show relative line numbers (commented, toggle with sitiom/nvim-numbertoggle)
-vim.o.background = "dark"     -- Use dark background
+vim.o.background = "dark"     -- Default background; auto-dark-mode may override it
 vim.o.termguicolors = true    -- Enable 24-bit RGB colors
 
 -- ============================================================================

@@ -37,6 +37,21 @@ Re-run the LSP picker anytime with `:LspServerSelect`.
 :checkhealth vim.pack                           " Health check
 ```
 
+## Theme switching
+
+Use `:ThemeSelect` for an interactive theme menu.
+
+Direct commands:
+
+```vim
+:ThemeSelect mode auto
+:ThemeSelect mode dark
+:ThemeSelect mode light
+:ThemeSelect dark boo
+:ThemeSelect dark achroma
+:ThemeSelect light achroma
+```
+
 ## Language servers
 
 Selected interactively via `:LspServerSelect`. Available servers:
