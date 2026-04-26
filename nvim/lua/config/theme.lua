@@ -5,7 +5,7 @@ local state_path = vim.fs.joinpath(vim.fn.stdpath("state"), "theme-preferences.j
 local defaults = {
   mode = "auto",
   dark_theme = "boo",
-  light_theme = "achroma",
+  light_theme = "koda",
 }
 
 local valid_modes = {
@@ -16,11 +16,11 @@ local valid_modes = {
 
 local valid_dark_themes = {
   boo = true,
-  achroma = true,
+  koda = true,
 }
 
 local valid_light_themes = {
-  achroma = true,
+  koda = true,
 }
 
 local function notify(message, level)
@@ -43,6 +43,13 @@ local function read_preferences()
     return vim.deepcopy(defaults)
   end
 
+  if decoded.light_theme == "achroma" then
+    decoded.light_theme = "koda"
+  end
+  if decoded.dark_theme == "achroma" then
+    decoded.dark_theme = "koda"
+  end
+
   return merge_preferences(decoded)
 end
 
@@ -62,10 +69,6 @@ local function save_preferences()
   write_preferences(preferences)
 end
 
-local function set_background(mode)
-  vim.api.nvim_set_option_value("background", mode, {})
-end
-
 local function apply_boo()
   local ok, boo = pcall(require, "boo-colorscheme")
   if not ok then
@@ -73,7 +76,6 @@ local function apply_boo()
     return false
   end
 
-  set_background("dark")
   boo.use({
     italic = true,
     theme = "boo",
@@ -82,75 +84,56 @@ local function apply_boo()
   return true
 end
 
-local function apply_achroma(mode)
-  local ok, achroma = pcall(require, "achroma")
+local function apply_koda(mode)
+  local ok, koda = pcall(require, "koda")
   if not ok then
-    notify("achroma theme is not installed", vim.log.levels.WARN)
+    notify("koda theme is not installed", vim.log.levels.WARN)
     return false
   end
 
-  set_background(mode)
-  achroma.setup({
-    mode = mode,
-    auto_dark_light = false,
-  })
-  vim.cmd.colorscheme("achroma")
+  koda.setup({})
+  vim.cmd.colorscheme(mode == "light" and "koda-light" or "koda-dark")
   return true
 end
 
 local function apply_dark_theme()
-  if preferences.dark_theme == "achroma" then
-    return apply_achroma("dark")
+  if preferences.dark_theme == "koda" then
+    return apply_koda("dark")
   end
-
   return apply_boo()
 end
 
 local function apply_light_theme()
-  return apply_achroma("light")
+  return apply_koda("light")
 end
 
-local function disable_auto_dark_mode()
-  local ok, auto_dark_mode = pcall(require, "auto-dark-mode")
-  if ok and auto_dark_mode.disable then
-    auto_dark_mode.disable()
-  end
-end
-
-local function enable_auto_dark_mode()
-  local ok, auto_dark_mode = pcall(require, "auto-dark-mode")
-  if not ok then
+local function apply_for_background()
+  if vim.o.background == "light" then
+    apply_light_theme()
+  else
     apply_dark_theme()
-    return
   end
-
-  disable_auto_dark_mode()
-  auto_dark_mode.setup({
-    update_interval = 3000,
-    fallback = "dark",
-    set_dark_mode = function()
-      apply_dark_theme()
-    end,
-    set_light_mode = function()
-      apply_light_theme()
-    end,
-  })
 end
 
 function M.apply_current()
-  if preferences.mode == "dark" then
-    disable_auto_dark_mode()
+  -- NVIM_THEME env var overrides persisted preferences (per-client control)
+  local env_mode = vim.env.NVIM_THEME
+  local mode = env_mode or preferences.mode
+
+  if mode == "dark" then
+    vim.o.background = "dark"
     apply_dark_theme()
     return
   end
 
-  if preferences.mode == "light" then
-    disable_auto_dark_mode()
+  if mode == "light" then
+    vim.o.background = "light"
     apply_light_theme()
     return
   end
 
-  enable_auto_dark_mode()
+  -- Auto mode: follow Neovim's native background detection
+  apply_for_background()
 end
 
 function M.get_preferences()
@@ -233,7 +216,7 @@ end
 local function select_dark_theme()
   local items = {
     { label = "boo", value = "boo" },
-    { label = "achroma", value = "achroma" },
+    { label = "koda", value = "koda" },
   }
 
   vim.ui.select(items, {
@@ -252,7 +235,7 @@ end
 
 local function select_light_theme()
   local items = {
-    { label = "achroma", value = "achroma" },
+    { label = "koda", value = "koda" },
   }
 
   vim.ui.select(items, {
@@ -353,9 +336,9 @@ function M.complete(arg_lead, cmd_line)
   if key == "mode" then
     values = { "auto", "dark", "light" }
   elseif key == "dark" then
-    values = { "boo", "achroma" }
+    values = { "boo", "koda" }
   elseif key == "light" then
-    values = { "achroma" }
+    values = { "koda" }
   end
 
   return vim.tbl_filter(function(item)

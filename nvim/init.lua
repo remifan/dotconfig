@@ -114,8 +114,7 @@ local pack_ok, pack_err = pcall(vim.pack.add, {
 
   -- UI
   'https://github.com/rockerBOO/boo-colorscheme-nvim',
-  'https://github.com/binbandit/achroma.nvim',
-  'https://github.com/f-person/auto-dark-mode.nvim',
+  'https://github.com/oskarnurm/koda.nvim',
   'https://github.com/nyoom-engineering/oxocarbon.nvim',
   'https://github.com/remifan/express_line.nvim',
   'https://github.com/nvim-lua/plenary.nvim',
